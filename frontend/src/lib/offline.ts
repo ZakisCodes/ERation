@@ -211,10 +211,18 @@ class OfflineManager {
       const index = store.index('timestamp');
       const cutoffTime = Date.now() - (7 * 24 * 60 * 60 * 1000); // 7 days ago
       const range = IDBKeyRange.upperBound(cutoffTime);
-      const request = index.delete(range);
+      const cursorRequest = index.openCursor(range);
 
-      request.onsuccess = () => resolve();
-      request.onerror = () => reject(request.error);
+      cursorRequest.onsuccess = (event) => {
+        const cursor = (event.target as IDBRequest<IDBCursorWithValue>).result;
+        if (cursor) {
+          store.delete(cursor.primaryKey);
+          cursor.continue();
+        } else {
+          resolve();
+        }
+      };
+      cursorRequest.onerror = () => reject(cursorRequest.error);
     });
   }
 }
