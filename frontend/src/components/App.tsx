@@ -33,8 +33,8 @@ export default function App({ user, onLogout }: AppProps) {
   const [qrScannerOpen, setQrScannerOpen] = useState(false);
   const [notificationCount, setNotificationCount] = useState(0);
 
-  const handleTabChange = (event: React.SyntheticEvent, newValue: TabValue) => {
-    setCurrentTab(newValue);
+  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+    setCurrentTab(newValue as TabValue);
   };
 
   const handleScanQR = () => {

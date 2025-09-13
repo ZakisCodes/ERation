@@ -54,7 +54,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen">
-      <App user={user} onLogout={handleLogout} />
+      {user && <App user={user} onLogout={handleLogout} />}
     </main>
   );
 }
