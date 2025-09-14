@@ -121,6 +121,24 @@ router.post('/verify-otp', async (req: Request, res: Response) => {
       });
     }
 
+    // Bypass OTP check for demo credentials
+    if (
+      rationCardId === DEMO_RATION_ID &&
+      mobileNumber === '9876543210' &&
+      otp === '123456'
+    ) {
+      // generate JWT token
+      const token = jwt.sign(
+        { rationCardId, mobileNumber },
+        process.env.JWT_SECRET || 'your-secret-key',
+        { expiresIn: '24h' }
+      );
+      return res.json({
+        message: 'OTP verified successfully (demo mode, bypassed)',
+        token,
+      });
+    }
+
     const key = otpKey(rationCardId, mobileNumber);
     const record = otpStore.get(key);
 
