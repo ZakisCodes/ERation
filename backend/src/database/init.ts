@@ -134,15 +134,15 @@ function insertSampleData() {
   // Sample ration card
   db.run(`
     INSERT OR IGNORE INTO ration_cards (id, family_name, mobile_number, address)
-    VALUES ('RC1234567890', 'Kumar Family', '9876543210', '123 Main Street, Mumbai, Maharashtra')
+    VALUES ('RC32165487', 'Kumar Family', '9876543210', '123 Main Street, Mumbai, Maharashtra')
   `);
 
   // Sample family members
   const members = [
-    ['M001', 'RC1234567890', 'Rajesh Kumar', 45, 'M', 'Head of Family', true, 'verified'],
-    ['M002', 'RC1234567890', 'Priya Kumar', 42, 'F', 'Spouse', false, 'pending'],
-    ['M003', 'RC1234567890', 'Arjun Kumar', 18, 'M', 'Son', false, 'not_verified'],
-    ['M004', 'RC1234567890', 'Meera Kumar', 15, 'F', 'Daughter', false, 'not_verified'],
+    ['M001', 'RC32165487', 'Rajesh Kumar', 45, 'M', 'Head of Family', true, 'verified'],
+    ['M002', 'RC32165487', 'Priya Kumar', 42, 'F', 'Spouse', false, 'pending'],
+    ['M003', 'RC32165487', 'Arjun Kumar', 18, 'M', 'Son', false, 'not_verified'],
+    ['M004', 'RC32165487', 'Meera Kumar', 15, 'F', 'Daughter', false, 'not_verified'],
   ];
 
   members.forEach(([id, rationCardId, name, age, gender, relation, isVerified, verificationStatus]) => {
